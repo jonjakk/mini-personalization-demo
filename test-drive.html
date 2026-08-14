@@ -11,12 +11,36 @@
 
   <nav class="nav">
     <div class="nav-container">
-      <a href="index.html" class="nav-logo">MINI</a>
+      <a href="index.html" class="nav-logo">
+        <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="24" cy="24" r="23" fill="none" stroke="#1a1a1a" stroke-width="1.5"/>
+          <circle cx="24" cy="24" r="19" fill="none" stroke="#1a1a1a" stroke-width="1.5"/>
+          <path d="M8 24 C8 24 14 14 24 14 C34 14 40 24 40 24 C40 24 34 34 24 34 C14 34 8 24 8 24Z" fill="none" stroke="#1a1a1a" stroke-width="1.5"/>
+          <text x="24" y="28" text-anchor="middle" font-family="Helvetica Neue, Arial" font-size="8" font-weight="700" fill="#1a1a1a">MINI</text>
+        </svg>
+      </a>
       <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="modelle/index.html">Modelle</a></li>
-        <li><a href="test-drive.html" class="active">Probefahrt</a></li>
+        <li><a href="modelle/index.html">Modelle &amp; Konfigurator</a></li>
+        <li><a href="modelle/index.html">Angebote</a></li>
+        <li><a href="#">Zubehoer &amp; Service</a></li>
+        <li><a href="modelle/cooper-se.html">MINI Electric</a></li>
+        <li><a href="#">Geschaeftskunden</a></li>
+        <li><a href="#">Mehr MINI</a></li>
       </ul>
+      <div class="nav-icons">
+        <a href="#" aria-label="Standort">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" stroke-width="1.5"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+        </a>
+        <a href="#" aria-label="Konto">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1c0-3.31 3.58-6 8-6s8 2.69 8 6v1"/></svg>
+        </a>
+        <a href="#" aria-label="Warenkorb">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+        </a>
+        <a href="#" aria-label="Merkliste">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" stroke-width="1.5"><path d="M12 21l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.18L12 21z"/></svg>
+        </a>
+      </div>
       <button class="nav-toggle" aria-label="Toggle navigation">
         <span></span>
         <span></span>
@@ -28,7 +52,7 @@
   <main>
     <section class="form-container">
       <h1>Probefahrt buchen</h1>
-      <p class="form-subtitle">Erleben Sie MINI live. Vereinbaren Sie jetzt Ihren persoenlichen Termin.</p>
+      <p class="form-subtitle">Erleben Sie MINI live. Vereinbaren Sie jetzt Ihren persoenlichen Termin bei einem MINI Partner in Ihrer Naehe.</p>
 
       <form action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8" method="POST">
         <input type="hidden" name="oid" value="00Dg8000004YllNEAS">
@@ -63,6 +87,9 @@
             <option value="MINI Cooper SE">MINI Cooper SE</option>
             <option value="MINI Aceman">MINI Aceman</option>
             <option value="MINI Countryman SE ALL4">MINI Countryman SE ALL4</option>
+            <option value="MINI Cooper">MINI Cooper</option>
+            <option value="MINI Cooper S">MINI Cooper S</option>
+            <option value="MINI Countryman">MINI Countryman</option>
           </select>
         </div>
 
@@ -90,8 +117,58 @@
   </main>
 
   <footer class="footer">
-    <p>MINI Demo Site - Salesforce Personalization Demo</p>
-    <p>Dies ist eine Demowebsite und kein offizielles MINI-Angebot.</p>
+    <div class="footer-main">
+      <div class="footer-main-inner">
+        <div class="footer-column">
+          <h4>Modelle</h4>
+          <ul>
+            <li><a href="modelle/index.html">Modelluebersicht</a></li>
+            <li><a href="modelle/cooper-se.html">MINI Cooper SE</a></li>
+            <li><a href="modelle/aceman.html">MINI Aceman</a></li>
+            <li><a href="modelle/countryman-se.html">MINI Countryman SE</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h4>MINI Finden</h4>
+          <ul>
+            <li><a href="modelle/index.html">Neuwagen und Junge Gebrauchte</a></li>
+            <li><a href="#">Leasing und Finanzierung</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h4>Zubehoer &amp; Service</h4>
+          <ul>
+            <li><a href="#">MINI Zubehoer Store</a></li>
+            <li><a href="#">MINI Connected</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h4>Informationen</h4>
+          <ul>
+            <li><a href="#">Geschaeftskunden</a></li>
+            <li><a href="#">Newsletter</a></li>
+            <li><a href="#">FAQs</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-legal">
+      <div class="footer-legal-inner">
+        <a href="#">Cookies</a>
+        <a href="#">Rechtlicher Hinweis</a>
+        <a href="#">Datenschutz</a>
+        <a href="#">Hilfe &amp; Kontakt</a>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="24" cy="24" r="23" fill="none" stroke="#1a1a1a" stroke-width="1"/>
+        <circle cx="24" cy="24" r="19" fill="none" stroke="#1a1a1a" stroke-width="1"/>
+        <path d="M8 24 C8 24 14 14 24 14 C34 14 40 24 40 24 C40 24 34 34 24 34 C14 34 8 24 8 24Z" fill="none" stroke="#1a1a1a" stroke-width="1"/>
+        <text x="24" y="28" text-anchor="middle" font-family="Helvetica Neue, Arial" font-size="8" font-weight="700" fill="#1a1a1a">MINI</text>
+      </svg>
+      <p>&copy; MINI 2026</p>
+    </div>
   </footer>
 
   <script src="js/sitemap-config.js"></script>
