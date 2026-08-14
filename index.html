@@ -333,6 +333,20 @@
     </div>
   </footer>
 
+  <script>
+    // Nav scroll: transparent -> white on scroll past hero
+    (function() {
+      var nav = document.querySelector('.nav');
+      if (!nav) return;
+      window.addEventListener('scroll', function() {
+        if (window.scrollY > 80) {
+          nav.classList.add('nav-scrolled');
+        } else {
+          nav.classList.remove('nav-scrolled');
+        }
+      });
+    })();
+  </script>
   <script src="js/sitemap-config.js"></script>
   <script src="js/main.js"></script>
 </body>
