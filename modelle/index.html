@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MINI Modelle - Alle Modelle im Ueberblick</title>
+  <title>MINI Modelle &amp; Konfigurator | Alle Modelle im Ueberblick</title>
   <link rel="stylesheet" href="../css/style.css">
   <script src="https://cdn.evgnet.com/beacon/sfdemo/nto/scripts/evergage.min.js"></script>
 </head>
@@ -11,12 +11,31 @@
 
   <nav class="nav">
     <div class="nav-container">
-      <a href="../index.html" class="nav-logo">MINI</a>
+      <a href="../index.html" class="nav-logo">
+        <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="24" cy="24" r="23" fill="none" stroke="#1a1a1a" stroke-width="1.5"/>
+          <circle cx="24" cy="24" r="19" fill="none" stroke="#1a1a1a" stroke-width="1.5"/>
+          <path d="M8 24 C8 24 14 14 24 14 C34 14 40 24 40 24 C40 24 34 34 24 34 C14 34 8 24 8 24Z" fill="none" stroke="#1a1a1a" stroke-width="1.5"/>
+          <text x="24" y="28" text-anchor="middle" font-family="Helvetica Neue, Arial" font-size="8" font-weight="700" fill="#1a1a1a">MINI</text>
+        </svg>
+      </a>
       <ul class="nav-links">
-        <li><a href="../index.html">Home</a></li>
-        <li><a href="index.html" class="active">Modelle</a></li>
+        <li><a href="index.html" class="active">Modelle &amp; Konfigurator</a></li>
+        <li><a href="index.html">Angebote</a></li>
+        <li><a href="cooper-se.html">MINI Electric</a></li>
         <li><a href="../test-drive.html">Probefahrt</a></li>
       </ul>
+      <div class="nav-icons">
+        <a href="#" aria-label="Standort">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" stroke-width="1.5"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+        </a>
+        <a href="#" aria-label="Konto">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1c0-3.31 3.58-6 8-6s8 2.69 8 6v1"/></svg>
+        </a>
+        <a href="#" aria-label="Merkliste">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" stroke-width="1.5"><path d="M12 21l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.18L12 21z"/></svg>
+        </a>
+      </div>
       <button class="nav-toggle" aria-label="Toggle navigation">
         <span></span>
         <span></span>
@@ -26,127 +45,282 @@
   </nav>
 
   <main>
-    <section class="section">
-      <h1 class="section-title">Alle MINI Modelle</h1>
-      <div class="model-selection-grid">
+    <div class="model-listing-layout">
+      <aside class="filter-sidebar">
+        <h2>Filter</h2>
+        <div class="filter-group">
+          <h3>Fahrzeugart</h3>
+          <label><input type="checkbox" checked> Neuwagen</label>
+          <label><input type="checkbox"> Gebrauchtwagen</label>
+        </div>
+        <div class="filter-group">
+          <h3>Antrieb</h3>
+          <label><input type="checkbox" checked> Elektro</label>
+          <label><input type="checkbox" checked> Verbrenner</label>
+        </div>
+        <div class="filter-group">
+          <h3>Modell</h3>
+          <label><input type="checkbox" checked> MINI 3-Tuer</label>
+          <label><input type="checkbox" checked> MINI 5-Tuer</label>
+          <label><input type="checkbox" checked> MINI Aceman</label>
+          <label><input type="checkbox" checked> MINI Countryman</label>
+          <label><input type="checkbox" checked> MINI Cabrio</label>
+          <label><input type="checkbox" checked> MINI Electric</label>
+          <label><input type="checkbox"> John Cooper Works</label>
+        </div>
+        <div class="filter-group">
+          <h3>Aktionen</h3>
+          <label><input type="checkbox"> E-Auto Foerderung</label>
+          <label><input type="checkbox"> Sondermodelle</label>
+        </div>
+      </aside>
 
-        <!-- Electric Models -->
-        <a href="cooper-se.html" class="model-card">
-          <div class="model-card-image" style="background: linear-gradient(135deg, #0a2a3a 0%, #1a4a5a 100%);">
-            <svg viewBox="0 0 300 180" xmlns="http://www.w3.org/2000/svg">
-              <rect x="60" y="90" width="180" height="50" rx="25" fill="#444"/>
-              <circle cx="110" cy="140" r="18" fill="#555"/>
-              <circle cx="190" cy="140" r="18" fill="#555"/>
-              <rect x="80" y="70" width="140" height="35" rx="10" fill="#555"/>
-              <text x="150" y="170" text-anchor="middle" fill="#00c8ff" font-family="Helvetica Neue, Arial" font-size="10">COOPER SE</text>
-            </svg>
-            <span class="model-card-badge badge-electric">Electric</span>
-          </div>
-          <div class="model-card-content">
-            <h3>MINI Cooper SE</h3>
-            <p class="price">Ab 38.900 EUR</p>
-            <p class="drivetrain">Elektrisch</p>
-          </div>
-        </a>
+      <div>
+        <h1 class="section-title" style="text-align:left;margin-bottom:2rem;">Alle MINI Modelle</h1>
+        <div class="model-selection-grid">
 
-        <a href="aceman.html" class="model-card">
-          <div class="model-card-image" style="background: linear-gradient(135deg, #1a2a1a 0%, #2a4a2a 100%);">
-            <svg viewBox="0 0 300 180" xmlns="http://www.w3.org/2000/svg">
-              <rect x="50" y="85" width="200" height="55" rx="25" fill="#444"/>
-              <circle cx="105" cy="140" r="20" fill="#555"/>
-              <circle cx="195" cy="140" r="20" fill="#555"/>
-              <rect x="70" y="60" width="160" height="40" rx="12" fill="#555"/>
-              <text x="150" y="170" text-anchor="middle" fill="#00c8ff" font-family="Helvetica Neue, Arial" font-size="10">ACEMAN</text>
-            </svg>
-            <span class="model-card-badge badge-electric">Electric</span>
-          </div>
-          <div class="model-card-content">
-            <h3>MINI Aceman</h3>
-            <p class="price">Ab 37.900 EUR</p>
-            <p class="drivetrain">Elektrisch</p>
-          </div>
-        </a>
+          <!-- MINI Cooper SE -->
+          <a href="cooper-se.html" class="model-card" data-model-id="mini-cooper-se" data-model-name="MINI Cooper SE" data-model-price="38900" data-model-drivetrain="Electric">
+            <div class="model-card-image">
+              <svg viewBox="0 0 280 160" xmlns="http://www.w3.org/2000/svg">
+                <rect width="280" height="160" fill="#fafafa"/>
+                <path d="M50 110 Q50 85 80 78 L140 65 Q170 60 200 62 L230 70 Q250 78 250 105 L250 115 Q250 120 245 120 L55 120 Q50 120 50 115 Z" fill="none" stroke="#0d8c6d" stroke-width="2"/>
+                <path d="M95 78 Q105 55 140 50 L170 50 Q200 53 210 78" fill="none" stroke="#0d8c6d" stroke-width="1.8"/>
+                <path d="M105 78 Q110 60 140 56 L165 56 Q190 58 198 78" fill="none" stroke="#0d8c6d" stroke-width="1.2" opacity="0.5"/>
+                <circle cx="85" cy="125" r="16" fill="none" stroke="#0d8c6d" stroke-width="2"/>
+                <circle cx="85" cy="125" r="8" fill="none" stroke="#0d8c6d" stroke-width="1"/>
+                <circle cx="220" cy="125" r="16" fill="none" stroke="#0d8c6d" stroke-width="2"/>
+                <circle cx="220" cy="125" r="8" fill="none" stroke="#0d8c6d" stroke-width="1"/>
+                <line x1="40" y1="141" x2="260" y2="141" stroke="#e5e5e5" stroke-width="0.5"/>
+              </svg>
+              <span class="model-card-badge badge-electric">Electric</span>
+              <span class="badge-mini-next">MINI Next</span>
+            </div>
+            <div class="model-card-content">
+              <h3>MINI Cooper SE</h3>
+              <p class="trim">Classic Trim</p>
+              <p class="price">Ab 299 EUR / Monat</p>
+              <p class="price-total">Ab 38.900 EUR</p>
+              <div class="model-card-specs">
+                <span>218 PS</span>
+                <span>402 km</span>
+                <span>Elektro</span>
+              </div>
+            </div>
+            <span class="model-card-button">Mehr Details</span>
+          </a>
 
-        <a href="countryman-se.html" class="model-card">
-          <div class="model-card-image" style="background: linear-gradient(135deg, #2a1a2a 0%, #4a2a4a 100%);">
-            <svg viewBox="0 0 300 180" xmlns="http://www.w3.org/2000/svg">
-              <rect x="40" y="80" width="220" height="60" rx="25" fill="#444"/>
-              <circle cx="100" cy="140" r="22" fill="#555"/>
-              <circle cx="200" cy="140" r="22" fill="#555"/>
-              <rect x="60" y="50" width="180" height="45" rx="12" fill="#555"/>
-              <text x="150" y="170" text-anchor="middle" fill="#00c8ff" font-family="Helvetica Neue, Arial" font-size="10">COUNTRYMAN SE ALL4</text>
-            </svg>
-            <span class="model-card-badge badge-electric">Electric</span>
-          </div>
-          <div class="model-card-content">
-            <h3>MINI Countryman SE ALL4</h3>
-            <p class="price">Ab 49.900 EUR</p>
-            <p class="drivetrain">Elektrisch</p>
-          </div>
-        </a>
+          <!-- MINI Aceman -->
+          <a href="aceman.html" class="model-card" data-model-id="mini-aceman" data-model-name="MINI Aceman" data-model-price="37900" data-model-drivetrain="Electric">
+            <div class="model-card-image">
+              <svg viewBox="0 0 280 160" xmlns="http://www.w3.org/2000/svg">
+                <rect width="280" height="160" fill="#fafafa"/>
+                <path d="M40 108 Q40 80 72 72 L135 58 Q165 54 200 56 L238 65 Q258 75 258 105 L258 115 Q258 120 253 120 L45 120 Q40 120 40 115 Z" fill="none" stroke="#0d8c6d" stroke-width="2"/>
+                <path d="M88 72 Q98 48 140 43 L175 43 Q210 47 222 72" fill="none" stroke="#0d8c6d" stroke-width="1.8"/>
+                <path d="M98 72 Q105 54 140 50 L170 50 Q200 52 212 72" fill="none" stroke="#0d8c6d" stroke-width="1.2" opacity="0.5"/>
+                <circle cx="80" cy="125" r="17" fill="none" stroke="#0d8c6d" stroke-width="2"/>
+                <circle cx="80" cy="125" r="9" fill="none" stroke="#0d8c6d" stroke-width="1"/>
+                <circle cx="225" cy="125" r="17" fill="none" stroke="#0d8c6d" stroke-width="2"/>
+                <circle cx="225" cy="125" r="9" fill="none" stroke="#0d8c6d" stroke-width="1"/>
+                <line x1="30" y1="142" x2="268" y2="142" stroke="#e5e5e5" stroke-width="0.5"/>
+              </svg>
+              <span class="model-card-badge badge-electric">Electric</span>
+              <span class="badge-mini-next">MINI Next</span>
+            </div>
+            <div class="model-card-content">
+              <h3>MINI Aceman</h3>
+              <p class="trim">Favoured Trim</p>
+              <p class="price">Ab 289 EUR / Monat</p>
+              <p class="price-total">Ab 37.900 EUR</p>
+              <div class="model-card-specs">
+                <span>218 PS</span>
+                <span>406 km</span>
+                <span>Elektro</span>
+              </div>
+            </div>
+            <span class="model-card-button">Mehr Details</span>
+          </a>
 
-        <!-- Combustion Models -->
-        <a href="#" class="model-card">
-          <div class="model-card-image" style="background: linear-gradient(135deg, #2a2a1a 0%, #4a4a2a 100%);">
-            <svg viewBox="0 0 300 180" xmlns="http://www.w3.org/2000/svg">
-              <rect x="60" y="90" width="180" height="50" rx="25" fill="#444"/>
-              <circle cx="110" cy="140" r="18" fill="#555"/>
-              <circle cx="190" cy="140" r="18" fill="#555"/>
-              <rect x="80" y="70" width="140" height="35" rx="10" fill="#555"/>
-              <text x="150" y="170" text-anchor="middle" fill="#ff6b35" font-family="Helvetica Neue, Arial" font-size="10">COOPER</text>
-            </svg>
-            <span class="model-card-badge badge-combustion">Combustion</span>
-          </div>
-          <div class="model-card-content">
-            <h3>MINI Cooper</h3>
-            <p class="price">Ab 28.900 EUR</p>
-            <p class="drivetrain">Verbrenner</p>
-          </div>
-        </a>
+          <!-- MINI Countryman SE ALL4 -->
+          <a href="countryman-se.html" class="model-card" data-model-id="mini-countryman-se-all4" data-model-name="MINI Countryman SE ALL4" data-model-price="49900" data-model-drivetrain="Electric">
+            <div class="model-card-image">
+              <svg viewBox="0 0 280 160" xmlns="http://www.w3.org/2000/svg">
+                <rect width="280" height="160" fill="#fafafa"/>
+                <path d="M30 105 Q30 75 65 66 L130 52 Q165 47 205 50 L245 60 Q268 70 268 100 L268 115 Q268 120 263 120 L35 120 Q30 120 30 115 Z" fill="none" stroke="#0d8c6d" stroke-width="2"/>
+                <path d="M80 66 Q90 38 140 33 L180 33 Q225 38 238 66" fill="none" stroke="#0d8c6d" stroke-width="1.8"/>
+                <path d="M92 66 Q100 45 140 40 L175 40 Q215 44 225 66" fill="none" stroke="#0d8c6d" stroke-width="1.2" opacity="0.5"/>
+                <circle cx="75" cy="125" r="19" fill="none" stroke="#0d8c6d" stroke-width="2"/>
+                <circle cx="75" cy="125" r="10" fill="none" stroke="#0d8c6d" stroke-width="1"/>
+                <circle cx="230" cy="125" r="19" fill="none" stroke="#0d8c6d" stroke-width="2"/>
+                <circle cx="230" cy="125" r="10" fill="none" stroke="#0d8c6d" stroke-width="1"/>
+                <line x1="20" y1="144" x2="275" y2="144" stroke="#e5e5e5" stroke-width="0.5"/>
+              </svg>
+              <span class="model-card-badge badge-electric">Electric</span>
+              <span class="badge-mini-next">MINI Next</span>
+            </div>
+            <div class="model-card-content">
+              <h3>MINI Countryman SE ALL4</h3>
+              <p class="trim">Classic Trim</p>
+              <p class="price">Ab 399 EUR / Monat</p>
+              <p class="price-total">Ab 49.900 EUR</p>
+              <div class="model-card-specs">
+                <span>313 PS</span>
+                <span>433 km</span>
+                <span>Elektro</span>
+              </div>
+            </div>
+            <span class="model-card-button">Mehr Details</span>
+          </a>
 
-        <a href="#" class="model-card">
-          <div class="model-card-image" style="background: linear-gradient(135deg, #2a1a0a 0%, #4a2a1a 100%);">
-            <svg viewBox="0 0 300 180" xmlns="http://www.w3.org/2000/svg">
-              <rect x="60" y="90" width="180" height="50" rx="25" fill="#444"/>
-              <circle cx="110" cy="140" r="18" fill="#555"/>
-              <circle cx="190" cy="140" r="18" fill="#555"/>
-              <rect x="80" y="70" width="140" height="35" rx="10" fill="#555"/>
-              <text x="150" y="170" text-anchor="middle" fill="#ff6b35" font-family="Helvetica Neue, Arial" font-size="10">COOPER S</text>
-            </svg>
-            <span class="model-card-badge badge-combustion">Combustion</span>
-          </div>
-          <div class="model-card-content">
-            <h3>MINI Cooper S</h3>
-            <p class="price">Ab 33.900 EUR</p>
-            <p class="drivetrain">Verbrenner</p>
-          </div>
-        </a>
+          <!-- MINI Cooper (Combustion) -->
+          <a href="#" class="model-card" data-model-id="mini-cooper" data-model-name="MINI Cooper" data-model-price="28900" data-model-drivetrain="Combustion">
+            <div class="model-card-image">
+              <svg viewBox="0 0 280 160" xmlns="http://www.w3.org/2000/svg">
+                <rect width="280" height="160" fill="#fafafa"/>
+                <path d="M55 112 Q55 88 82 80 L138 68 Q168 63 198 65 L228 72 Q248 80 248 107 L248 116 Q248 120 244 120 L59 120 Q55 120 55 116 Z" fill="none" stroke="#444" stroke-width="1.8"/>
+                <path d="M98 80 Q107 58 142 53 L168 53 Q198 56 208 80" fill="none" stroke="#444" stroke-width="1.6"/>
+                <path d="M108 80 Q114 64 142 59 L164 59 Q188 61 196 80" fill="none" stroke="#444" stroke-width="1" opacity="0.5"/>
+                <circle cx="90" cy="125" r="15" fill="none" stroke="#444" stroke-width="1.8"/>
+                <circle cx="90" cy="125" r="8" fill="none" stroke="#444" stroke-width="1"/>
+                <circle cx="218" cy="125" r="15" fill="none" stroke="#444" stroke-width="1.8"/>
+                <circle cx="218" cy="125" r="8" fill="none" stroke="#444" stroke-width="1"/>
+                <line x1="44" y1="140" x2="256" y2="140" stroke="#e5e5e5" stroke-width="0.5"/>
+              </svg>
+              <span class="model-card-badge badge-combustion">Benzin</span>
+            </div>
+            <div class="model-card-content">
+              <h3>MINI Cooper</h3>
+              <p class="trim">Classic Trim</p>
+              <p class="price">Ab 229 EUR / Monat</p>
+              <p class="price-total">Ab 28.900 EUR</p>
+              <div class="model-card-specs">
+                <span>156 PS</span>
+                <span>Benzin</span>
+                <span>Automatik</span>
+              </div>
+            </div>
+            <span class="model-card-button">Mehr Details</span>
+          </a>
 
-        <a href="#" class="model-card">
-          <div class="model-card-image" style="background: linear-gradient(135deg, #1a1a2a 0%, #2a2a4a 100%);">
-            <svg viewBox="0 0 300 180" xmlns="http://www.w3.org/2000/svg">
-              <rect x="40" y="80" width="220" height="60" rx="25" fill="#444"/>
-              <circle cx="100" cy="140" r="22" fill="#555"/>
-              <circle cx="200" cy="140" r="22" fill="#555"/>
-              <rect x="60" y="50" width="180" height="45" rx="12" fill="#555"/>
-              <text x="150" y="170" text-anchor="middle" fill="#ff6b35" font-family="Helvetica Neue, Arial" font-size="10">COUNTRYMAN</text>
-            </svg>
-            <span class="model-card-badge badge-combustion">Combustion</span>
-          </div>
-          <div class="model-card-content">
-            <h3>MINI Countryman</h3>
-            <p class="price">Ab 42.900 EUR</p>
-            <p class="drivetrain">Verbrenner</p>
-          </div>
-        </a>
+          <!-- MINI Cooper S (Combustion) -->
+          <a href="#" class="model-card" data-model-id="mini-cooper-s" data-model-name="MINI Cooper S" data-model-price="33900" data-model-drivetrain="Combustion">
+            <div class="model-card-image">
+              <svg viewBox="0 0 280 160" xmlns="http://www.w3.org/2000/svg">
+                <rect width="280" height="160" fill="#fafafa"/>
+                <path d="M52 110 Q52 84 82 76 L140 64 Q170 59 202 61 L232 69 Q252 78 252 106 L252 115 Q252 120 247 120 L57 120 Q52 120 52 115 Z" fill="none" stroke="#444" stroke-width="1.8"/>
+                <path d="M95 76 Q105 52 143 47 L170 47 Q202 50 212 76" fill="none" stroke="#444" stroke-width="1.6"/>
+                <path d="M105 76 Q112 58 143 53 L166 53 Q192 55 200 76" fill="none" stroke="#444" stroke-width="1" opacity="0.5"/>
+                <circle cx="87" cy="125" r="16" fill="none" stroke="#444" stroke-width="1.8"/>
+                <circle cx="87" cy="125" r="8" fill="none" stroke="#444" stroke-width="1"/>
+                <circle cx="222" cy="125" r="16" fill="none" stroke="#444" stroke-width="1.8"/>
+                <circle cx="222" cy="125" r="8" fill="none" stroke="#444" stroke-width="1"/>
+                <line x1="42" y1="141" x2="258" y2="141" stroke="#e5e5e5" stroke-width="0.5"/>
+              </svg>
+              <span class="model-card-badge badge-combustion">Benzin</span>
+            </div>
+            <div class="model-card-content">
+              <h3>MINI Cooper S</h3>
+              <p class="trim">Sport Trim</p>
+              <p class="price">Ab 279 EUR / Monat</p>
+              <p class="price-total">Ab 33.900 EUR</p>
+              <div class="model-card-specs">
+                <span>204 PS</span>
+                <span>Benzin</span>
+                <span>Automatik</span>
+              </div>
+            </div>
+            <span class="model-card-button">Mehr Details</span>
+          </a>
 
+          <!-- MINI Countryman (Combustion) -->
+          <a href="#" class="model-card" data-model-id="mini-countryman" data-model-name="MINI Countryman" data-model-price="42900" data-model-drivetrain="Combustion">
+            <div class="model-card-image">
+              <svg viewBox="0 0 280 160" xmlns="http://www.w3.org/2000/svg">
+                <rect width="280" height="160" fill="#fafafa"/>
+                <path d="M32 104 Q32 73 67 64 L132 50 Q167 45 207 48 L247 58 Q270 68 270 98 L270 114 Q270 120 265 120 L37 120 Q32 120 32 114 Z" fill="none" stroke="#444" stroke-width="1.8"/>
+                <path d="M82 64 Q92 36 142 31 L182 31 Q227 36 240 64" fill="none" stroke="#444" stroke-width="1.6"/>
+                <path d="M94 64 Q102 43 142 38 L177 38 Q217 42 227 64" fill="none" stroke="#444" stroke-width="1" opacity="0.5"/>
+                <circle cx="77" cy="125" r="18" fill="none" stroke="#444" stroke-width="1.8"/>
+                <circle cx="77" cy="125" r="9" fill="none" stroke="#444" stroke-width="1"/>
+                <circle cx="232" cy="125" r="18" fill="none" stroke="#444" stroke-width="1.8"/>
+                <circle cx="232" cy="125" r="9" fill="none" stroke="#444" stroke-width="1"/>
+                <line x1="22" y1="143" x2="278" y2="143" stroke="#e5e5e5" stroke-width="0.5"/>
+              </svg>
+              <span class="model-card-badge badge-combustion">Benzin</span>
+            </div>
+            <div class="model-card-content">
+              <h3>MINI Countryman</h3>
+              <p class="trim">Classic Trim</p>
+              <p class="price">Ab 349 EUR / Monat</p>
+              <p class="price-total">Ab 42.900 EUR</p>
+              <div class="model-card-specs">
+                <span>170 PS</span>
+                <span>Benzin</span>
+                <span>ALL4</span>
+              </div>
+            </div>
+            <span class="model-card-button">Mehr Details</span>
+          </a>
+
+        </div>
       </div>
-    </section>
+    </div>
   </main>
 
   <footer class="footer">
-    <p>MINI Demo Site - Salesforce Personalization Demo</p>
-    <p>Dies ist eine Demowebsite und kein offizielles MINI-Angebot.</p>
+    <div class="footer-content">
+      <div class="footer-columns">
+        <div class="footer-column">
+          <h4>Modelle</h4>
+          <ul>
+            <li><a href="cooper-se.html">MINI Cooper SE</a></li>
+            <li><a href="aceman.html">MINI Aceman</a></li>
+            <li><a href="countryman-se.html">MINI Countryman SE</a></li>
+            <li><a href="index.html">Alle Modelle</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h4>Kaufen &amp; Konfigurieren</h4>
+          <ul>
+            <li><a href="index.html">Konfigurator</a></li>
+            <li><a href="index.html">Angebote</a></li>
+            <li><a href="../test-drive.html">Probefahrt</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h4>Service</h4>
+          <ul>
+            <li><a href="#">Haendler finden</a></li>
+            <li><a href="#">Zubehoer</a></li>
+            <li><a href="#">Garantie</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h4>MINI Welt</h4>
+          <ul>
+            <li><a href="#">MINI Electric</a></li>
+            <li><a href="#">Nachhaltigkeit</a></li>
+            <li><a href="#">News</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; MINI 2025. Dies ist eine Demowebsite.</p>
+        <div class="footer-bottom-links">
+          <a href="#">Impressum</a>
+          <a href="#">Datenschutz</a>
+          <a href="#">Cookie-Einstellungen</a>
+        </div>
+      </div>
+      <div class="footer-logo">
+        <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="24" cy="24" r="23" fill="none" stroke="#1a1a1a" stroke-width="1"/>
+          <circle cx="24" cy="24" r="19" fill="none" stroke="#1a1a1a" stroke-width="1"/>
+          <path d="M8 24 C8 24 14 14 24 14 C34 14 40 24 40 24 C40 24 34 34 24 34 C14 34 8 24 8 24Z" fill="none" stroke="#1a1a1a" stroke-width="1"/>
+          <text x="24" y="28" text-anchor="middle" font-family="Helvetica Neue, Arial" font-size="8" font-weight="700" fill="#1a1a1a">MINI</text>
+        </svg>
+      </div>
+    </div>
   </footer>
 
   <script src="../js/sitemap-config.js"></script>
