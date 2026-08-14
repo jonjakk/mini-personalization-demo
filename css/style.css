@@ -225,9 +225,17 @@ main {
 }
 
 .hero-image {
+  position: absolute;
+  inset: 0;
   width: 100%;
-  max-width: 700px;
-  margin: var(--spacing-md) auto;
+  height: 100%;
+}
+
+.hero-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 .hero-carousel-arrow {
@@ -386,6 +394,7 @@ main {
   align-items: center;
   justify-content: center;
   transition: transform 0.2s ease;
+  overflow: hidden;
 }
 
 .model-circle:hover .model-circle-icon {
@@ -395,6 +404,13 @@ main {
 .model-circle-icon svg {
   width: 40px;
   height: 22px;
+}
+
+.model-circle-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
 }
 
 .model-circle-label {
@@ -447,11 +463,18 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
 }
 
 .featured-model-image svg {
   width: 100%;
   height: 100%;
+}
+
+.featured-model-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 /* ==============================
@@ -487,11 +510,18 @@ main {
   position: relative;
   background-color: #fafafa;
   padding: var(--spacing-sm);
+  overflow: hidden;
 }
 
 .model-card-image svg {
   width: 100%;
   height: 100%;
+}
+
+.model-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 .model-card-badge {
@@ -758,6 +788,32 @@ main {
   margin-top: auto;
 }
 
+.offer-card-with-image {
+  flex-direction: row;
+  padding: 0;
+  gap: 0;
+}
+
+.offer-card-with-image .offer-card-image {
+  width: 200px;
+  min-height: 100%;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.offer-card-with-image .offer-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.offer-card-with-image .offer-card-text {
+  padding: 40px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
 /* ==============================
    NEWS SECTION
    ============================== */
@@ -877,6 +933,12 @@ main {
   height: auto;
 }
 
+.model-hero-image .main-image img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
 .model-hero-image .thumbnail-strip {
   display: flex;
   gap: 8px;
@@ -891,10 +953,17 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
 }
 
 .model-hero-image .thumbnail-strip .thumb.active {
   border-color: var(--color-text);
+}
+
+.model-hero-image .thumbnail-strip .thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .model-hero-panel {
@@ -1109,11 +1178,18 @@ main {
   align-items: center;
   justify-content: center;
   margin-bottom: var(--spacing-md);
+  overflow: hidden;
 }
 
 .detail-image svg {
   max-width: 100%;
   height: auto;
+}
+
+.detail-image img {
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
 }
 
 /* Paketinhalte */
@@ -1138,6 +1214,13 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
+}
+
+.paket-item .paket-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .paket-item .paket-label {
@@ -1247,6 +1330,12 @@ main {
 .photo-gallery-item svg {
   width: 80%;
   height: 80%;
+}
+
+.photo-gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 /* Financing section */
@@ -1422,6 +1511,22 @@ main {
   width: 16px;
   height: 16px;
   accent-color: var(--color-text);
+}
+
+/* Listing pagination */
+.listing-pagination {
+  text-align: center;
+  padding: var(--spacing-lg) 0 var(--spacing-md);
+}
+
+.listing-pagination p {
+  font-size: 13px;
+  color: var(--color-text-muted);
+  margin-bottom: var(--spacing-sm);
+}
+
+.listing-load-more {
+  padding: 12px 32px;
 }
 
 /* Blue info banner */
