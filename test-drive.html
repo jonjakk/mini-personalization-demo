@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MINI Probefahrt - Jetzt Termin vereinbaren</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="//cdn.evgnet.com/beacon/ACCOUNT_ID/DATASET_ID/scripts/evergage.min.js"></script>
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">MINI</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="modelle/index.html">Modelle</a></li>
+        <li><a href="test-drive.html" class="active">Probefahrt</a></li>
+      </ul>
+      <button class="nav-toggle" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <main>
+    <section class="form-container">
+      <h1>Probefahrt buchen</h1>
+      <p class="form-subtitle">Erleben Sie MINI live. Vereinbaren Sie jetzt Ihren persoenlichen Termin.</p>
+
+      <form action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8" method="POST">
+        <input type="hidden" name="oid" value="00Dg8000004YllNEAS">
+        <input type="hidden" name="retURL" value="">
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="first_name">Vorname</label>
+            <input type="text" id="first_name" name="first_name" required placeholder="Max">
+          </div>
+          <div class="form-group">
+            <label for="last_name">Nachname</label>
+            <input type="text" id="last_name" name="last_name" required placeholder="Mustermann">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="email">E-Mail</label>
+            <input type="email" id="email" name="email" required placeholder="max@beispiel.de">
+          </div>
+          <div class="form-group">
+            <label for="phone">Telefon</label>
+            <input type="tel" id="phone" name="phone" placeholder="+49 170 1234567">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="preferred_model">Bevorzugtes Modell</label>
+          <select id="preferred_model" name="00Ng8000004MINI1" required>
+            <option value="">Bitte waehlen...</option>
+            <option value="MINI Cooper SE">MINI Cooper SE</option>
+            <option value="MINI Aceman">MINI Aceman</option>
+            <option value="MINI Countryman SE ALL4">MINI Countryman SE ALL4</option>
+          </select>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="preferred_date">Wunschtermin</label>
+            <input type="date" id="preferred_date" name="00Ng8000004MINI2">
+          </div>
+          <div class="form-group">
+            <label for="dealer_location">Bevorzugter Haendler / Standort</label>
+            <input type="text" id="dealer_location" name="00Ng8000004MINI3" placeholder="z.B. Muenchen, Berlin">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="description">Kommentare</label>
+          <textarea id="description" name="description" placeholder="Haben Sie besondere Wuensche oder Fragen?"></textarea>
+        </div>
+
+        <div class="form-submit">
+          <button type="submit" class="btn btn-primary">Probefahrt anfragen</button>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>MINI Demo Site - Salesforce Personalization Demo</p>
+    <p>Dies ist eine Demowebsite und kein offizielles MINI-Angebot.</p>
+  </footer>
+
+  <script src="js/sitemap-config.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
