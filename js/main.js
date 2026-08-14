@@ -125,22 +125,47 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // --- Affinity Display (Profile Lookup simulation) ---
   // Show a floating panel with live affinity scores (visible during demo)
-  if (localStorage.getItem('mini_show_affinity') === 'true' || window.location.hash === '#affinity') {
+  function showAffinityPanel() {
+    if (document.getElementById('affinity-panel')) return; // already showing
     var panel = document.createElement('div');
     panel.id = 'affinity-panel';
     panel.style.cssText = 'position:fixed;bottom:20px;right:20px;width:280px;background:#1a1a1a;border:1px solid #333;border-radius:8px;padding:16px;z-index:9999;font-family:Helvetica Neue,Arial,sans-serif;color:#fff;font-size:13px;box-shadow:0 4px 20px rgba(0,0,0,0.5);';
     panel.innerHTML = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">' +
       '<strong style="color:#b6ff00;font-size:11px;letter-spacing:1px;">LIVE AFFINITIES</strong>' +
-      '<span style="cursor:pointer;color:#666;" onclick="this.parentElement.parentElement.remove()">✕</span></div>' +
+      '<span style="cursor:pointer;color:#666;" onclick="this.parentElement.parentElement.remove()">&#10005;</span></div>' +
       '<div style="margin-bottom:8px;">Electric Affinity: <strong style="color:#00ff88;">' + electricScore + '%</strong></div>' +
       '<div style="margin-bottom:8px;"><div style="height:6px;background:#333;border-radius:3px;overflow:hidden;"><div style="height:100%;width:' + electricScore + '%;background:linear-gradient(90deg,#00ff88,#b6ff00);border-radius:3px;transition:width 0.5s;"></div></div></div>' +
       '<div style="margin-bottom:4px;color:#999;">Electric Views: ' + affinity.electric + '</div>' +
       '<div style="margin-bottom:4px;color:#999;">Combustion Views: ' + affinity.combustion + '</div>' +
       '<div style="margin-bottom:4px;color:#999;">Total Page Views: ' + affinity.pageViews + '</div>' +
       '<div style="margin-bottom:4px;color:#999;">Sessions: ' + affinity.visits + '</div>' +
-      '<div style="margin-top:8px;padding-top:8px;border-top:1px solid #333;color:#666;font-size:10px;">Profile Lookup • Real-time</div>';
+      '<div style="margin-top:8px;padding-top:8px;border-top:1px solid #333;color:#666;font-size:10px;">Profile Lookup &bull; Real-time</div>';
     document.body.appendChild(panel);
   }
+
+  function shouldShowAffinity() {
+    return localStorage.getItem('mini_show_affinity') === 'true' ||
+           window.location.hash === '#affinity' ||
+           window.location.href.indexOf('#affinity') !== -1;
+  }
+
+  if (shouldShowAffinity()) {
+    showAffinityPanel();
+  }
+
+  // Also check after a short delay (handles race condition with hash on GitHub Pages)
+  setTimeout(function() {
+    if (shouldShowAffinity()) {
+      showAffinityPanel();
+    }
+  }, 100);
+
+  // Handle hash change (e.g., user adds #affinity to URL while on page)
+  window.addEventListener('hashchange', function() {
+    if (window.location.hash === '#affinity') {
+      showAffinityPanel();
+    }
+  });
 
   // Enable affinity panel via keyboard shortcut (Shift+A)
   document.addEventListener('keydown', function(e) {
