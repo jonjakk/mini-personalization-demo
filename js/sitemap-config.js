@@ -7,15 +7,7 @@
  */
 SalesforceInteractions.init({
   cookieDomain: 'jonjakk.github.io',
-  consents: [{ provider: 'mini-demo', purpose: 'Tracking', status: SalesforceInteractions.ConsentStatus.OptIn }],
-  personalization: {
-    dataspace: 'default',
-    flickerDefense: {
-      enabled: true,
-      selector: '.hero-banner',
-      timeoutMs: 3000
-    }
-  }
+  consents: [{ provider: 'mini-demo', purpose: 'Tracking', status: SalesforceInteractions.ConsentStatus.OptIn }]
 }).then(() => {
   const config = {
     global: {
