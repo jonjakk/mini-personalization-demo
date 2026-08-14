@@ -236,6 +236,29 @@ main {
   height: 100%;
   object-fit: cover;
   display: block;
+  opacity: 0.15;
+}
+
+.hero-carousel-dots {
+  position: absolute;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 2;
+}
+
+.hero-carousel-dots span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.4);
+  cursor: pointer;
+}
+
+.hero-carousel-dots span.active {
+  background: #ffffff;
 }
 
 .hero-carousel-arrow {
@@ -386,8 +409,8 @@ main {
 }
 
 .model-circle-icon {
-  width: 72px;
-  height: 72px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
   background-color: #1a1a1a;
   display: flex;
@@ -411,6 +434,8 @@ main {
   height: 100%;
   object-fit: cover;
   border-radius: 50%;
+  opacity: 0.3;
+  filter: brightness(0.6);
 }
 
 .model-circle-label {
@@ -728,18 +753,20 @@ main {
 }
 
 .green-banner a {
+  display: inline-block;
   color: #ffffff;
   font-size: 13px;
   font-weight: 600;
   letter-spacing: 0.5px;
-  border-bottom: 1px solid rgba(255,255,255,0.5);
-  padding-bottom: 2px;
-  transition: border-color 0.2s ease;
+  background-color: rgba(0,0,0,0.3);
+  border: 1.5px solid #ffffff;
+  padding: 12px 28px;
+  transition: background-color 0.2s ease;
 }
 
 .green-banner a:hover {
   color: #ffffff;
-  border-color: #ffffff;
+  background-color: rgba(0,0,0,0.5);
 }
 
 /* ==============================
@@ -795,7 +822,7 @@ main {
 }
 
 .offer-card-with-image .offer-card-image {
-  width: 200px;
+  width: 40%;
   min-height: 100%;
   flex-shrink: 0;
   overflow: hidden;
@@ -849,20 +876,21 @@ main {
   inset: 0;
   background-size: cover;
   background-position: center;
+  opacity: 0;
 }
 
 .news-card-content {
   position: relative;
   z-index: 1;
   padding: 32px;
-  background: linear-gradient(transparent, rgba(0,0,0,0.7));
+  background: none;
   width: 100%;
-  color: #ffffff;
+  color: #1a1a1a;
 }
 
 .news-card-content .news-date {
   font-size: 11px;
-  opacity: 0.7;
+  color: var(--color-text-muted);
   margin-bottom: 8px;
   letter-spacing: 0.5px;
 }
@@ -873,11 +901,12 @@ main {
   margin-bottom: 4px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  color: #1a1a1a;
 }
 
 .news-card-content p {
   font-size: 13px;
-  opacity: 0.85;
+  color: var(--color-text-muted);
 }
 
 /* ==============================
@@ -1831,6 +1860,354 @@ main {
 }
 
 /* ==============================
+   BACK TO TOP BUTTON
+   ============================== */
+.back-to-top {
+  text-align: center;
+  padding: 40px var(--spacing-md) 32px;
+}
+
+.back-to-top a {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: var(--color-text);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.back-to-top a span {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1.5px solid var(--color-text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.back-to-top a span svg {
+  width: 16px;
+  height: 16px;
+  stroke: var(--color-text);
+  fill: none;
+  stroke-width: 2;
+}
+
+/* ==============================
+   LEGAL DISCLAIMER
+   ============================== */
+.legal-disclaimer {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: var(--spacing-lg) var(--spacing-md);
+  border-top: 1px solid var(--color-border);
+}
+
+.legal-disclaimer p {
+  font-size: 10px;
+  color: var(--color-text-light);
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+
+.legal-disclaimer p a {
+  color: var(--color-blue);
+}
+
+/* ==============================
+   FILTER COLLAPSE ARROWS
+   ============================== */
+.filter-group h3 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.filter-group h3::after {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-right: 1.5px solid var(--color-text-muted);
+  border-bottom: 1.5px solid var(--color-text-muted);
+  transform: rotate(45deg);
+  flex-shrink: 0;
+}
+
+/* ==============================
+   SPEC ICONS (model listing)
+   ============================== */
+.model-card-specs .spec-icon {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.model-card-specs .spec-icon svg {
+  width: 16px;
+  height: 16px;
+  stroke: var(--color-text-muted);
+  fill: none;
+  stroke-width: 1.5;
+  flex-shrink: 0;
+}
+
+.model-card-specs-secondary .spec-icon svg {
+  width: 14px;
+  height: 14px;
+  stroke: var(--color-text-light);
+  fill: none;
+  stroke-width: 1.5;
+  flex-shrink: 0;
+}
+
+/* ==============================
+   CARD PRICE SPLIT LAYOUT
+   ============================== */
+.model-card-price-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2px;
+}
+
+.model-card-price-row .price-label {
+  font-size: 12px;
+  color: var(--color-text-muted);
+}
+
+.model-card-price-row .price-value {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.model-card-price-row .info-icon {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 1px solid var(--color-text-muted);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  color: var(--color-text-muted);
+  margin-left: 6px;
+  flex-shrink: 0;
+}
+
+/* ==============================
+   HEART ICON OUTLINED
+   ============================== */
+.model-card-delivery .heart-icon {
+  cursor: pointer;
+  font-style: normal;
+}
+
+.model-card-delivery .heart-icon svg {
+  width: 18px;
+  height: 18px;
+  stroke: var(--color-text-muted);
+  fill: none;
+  stroke-width: 1.5;
+}
+
+/* ==============================
+   LOAD MORE BUTTON (rounded)
+   ============================== */
+.listing-load-more {
+  padding: 12px 32px;
+  border-radius: 24px;
+  border: 1.5px solid var(--color-text);
+  background: transparent;
+  color: var(--color-text);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.listing-load-more:hover {
+  background-color: var(--color-text);
+  color: #ffffff;
+}
+
+/* ==============================
+   SORT DROPDOWN (custom styled)
+   ============================== */
+.model-listing-header .sort-dropdown {
+  font-size: 13px;
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  padding: 10px 36px 10px 16px;
+  background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%231a1a1a' stroke-width='1.5' fill='none'/%3E%3C/svg%3E") no-repeat right 12px center;
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: pointer;
+}
+
+/* ==============================
+   DEALER INFO (detail page)
+   ============================== */
+.dealer-info {
+  display: flex;
+  gap: 32px;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-md) 0;
+}
+
+.dealer-info-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.dealer-info-item .dealer-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.dealer-info-item .dealer-avatar svg {
+  width: 28px;
+  height: 28px;
+}
+
+.dealer-info-item .dealer-text {
+  font-size: 12px;
+  color: var(--color-text-muted);
+  line-height: 1.4;
+}
+
+.dealer-info-item .dealer-text strong {
+  display: block;
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+/* ==============================
+   FINANCING DETAIL (form-based)
+   ============================== */
+.financing-detail {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-lg);
+  padding: var(--spacing-lg) var(--spacing-md);
+  max-width: var(--max-width);
+  margin: 0 auto;
+  border: 1px solid var(--color-border);
+  margin-top: var(--spacing-lg);
+  margin-bottom: var(--spacing-lg);
+}
+
+.financing-detail h2 {
+  grid-column: 1 / -1;
+  font-size: 16px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding-bottom: var(--spacing-sm);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.financing-detail .financing-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.financing-detail .financing-form .form-row-inline {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.financing-detail .financing-form label {
+  font-size: 12px;
+  color: var(--color-text-muted);
+  display: block;
+  margin-bottom: 4px;
+}
+
+.financing-detail .financing-form input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--color-border);
+  font-size: 13px;
+}
+
+.financing-detail .financing-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.financing-detail .financing-summary .summary-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--color-border);
+  font-size: 13px;
+}
+
+.financing-detail .financing-summary .summary-row .label {
+  color: var(--color-text-muted);
+}
+
+.financing-detail .financing-summary .summary-row .value {
+  font-weight: 600;
+}
+
+/* ==============================
+   SERVICES SECTION (detail page)
+   ============================== */
+.services-section {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: var(--spacing-lg) var(--spacing-md);
+  border-top: 1px solid var(--color-border);
+}
+
+.services-section h3 {
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: var(--spacing-md);
+}
+
+.services-section .service-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--color-border);
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.services-section .service-item::after {
+  content: '';
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1.5px solid var(--color-text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 10 10'%3E%3Cpath d='M5 2v6M2 5h6' stroke='%236b6b6b' stroke-width='1.5' fill='none'/%3E%3C/svg%3E") no-repeat center center;
+}
+
+/* ==============================
    RESPONSIVE
    ============================== */
 @media (max-width: 1024px) {
@@ -1915,8 +2292,8 @@ main {
   }
 
   .model-circle-icon {
-    width: 56px;
-    height: 56px;
+    width: 40px;
+    height: 40px;
   }
 
   .model-circle-icon svg {
