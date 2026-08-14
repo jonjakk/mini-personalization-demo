@@ -99,6 +99,17 @@ img {
   height: 28px;
 }
 
+.nav-logo-img {
+  height: 40px;
+  width: auto;
+  object-fit: contain;
+  filter: brightness(0) invert(1); /* Makes it white for dark nav */
+}
+
+.nav-scrolled .nav-logo-img {
+  filter: brightness(0); /* Makes it black for light nav */
+}
+
 .nav-links {
   display: flex;
   list-style: none;
@@ -1908,6 +1919,12 @@ main {
   height: 48px;
   opacity: 0.4;
   margin-bottom: 12px;
+}
+
+.footer-logo-img {
+  height: 50px;
+  width: auto;
+  filter: brightness(0); /* Black on light footer */
 }
 
 .footer-copyright p {
