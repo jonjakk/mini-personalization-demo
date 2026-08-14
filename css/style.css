@@ -68,6 +68,12 @@ img {
   left: 0;
   right: 0;
   z-index: 1000;
+  background-color: transparent;
+  border-bottom: none;
+  transition: background-color 0.3s ease;
+}
+
+.nav.nav-scrolled {
   background-color: #ffffff;
   border-bottom: 1px solid var(--color-border);
 }
@@ -89,8 +95,8 @@ img {
 }
 
 .nav-logo svg {
-  width: 40px;
-  height: 40px;
+  width: 60px;
+  height: 28px;
 }
 
 .nav-links {
@@ -108,12 +114,22 @@ img {
   padding: 4px 0;
   border-bottom: 2px solid transparent;
   transition: border-color 0.2s ease, color 0.2s ease;
-  color: var(--color-text);
+  color: #ffffff;
   white-space: nowrap;
+}
+
+.nav-scrolled .nav-links a {
+  color: var(--color-text);
 }
 
 .nav-links a:hover,
 .nav-links a.active {
+  color: #ffffff;
+  border-bottom-color: #ffffff;
+}
+
+.nav-scrolled .nav-links a:hover,
+.nav-scrolled .nav-links a.active {
   color: var(--color-text);
   border-bottom-color: var(--color-text);
 }
@@ -133,15 +149,50 @@ img {
   height: 36px;
   border-radius: 50%;
   transition: background-color 0.2s ease;
+  color: #ffffff;
+}
+
+.nav-scrolled .nav-icons a {
+  color: var(--color-text);
 }
 
 .nav-icons a:hover {
+  background-color: rgba(255,255,255,0.15);
+}
+
+.nav-scrolled .nav-icons a:hover {
   background-color: var(--color-bg-secondary);
 }
 
 .nav-icons svg {
   width: 20px;
   height: 20px;
+  stroke: currentColor;
+}
+
+.nav-logo svg text,
+.nav-logo svg ellipse,
+.nav-logo svg line,
+.nav-logo svg circle {
+  stroke: #ffffff;
+  fill: none;
+}
+
+.nav-logo svg text {
+  fill: #ffffff;
+  stroke: none;
+}
+
+.nav-scrolled .nav-logo svg text,
+.nav-scrolled .nav-logo svg ellipse,
+.nav-scrolled .nav-logo svg line,
+.nav-scrolled .nav-logo svg circle {
+  stroke: #1a1a1a;
+}
+
+.nav-scrolled .nav-logo svg text {
+  fill: #1a1a1a;
+  stroke: none;
 }
 
 .nav-toggle {
@@ -157,13 +208,17 @@ img {
 .nav-toggle span {
   width: 22px;
   height: 2px;
-  background: var(--color-text);
+  background: #ffffff;
   transition: transform 0.3s ease;
 }
 
-/* Main content offset for fixed nav */
+.nav-scrolled .nav-toggle span {
+  background: var(--color-text);
+}
+
+/* Main content - NO offset since nav is transparent over hero */
 main {
-  padding-top: var(--nav-height);
+  padding-top: 0;
 }
 
 /* ==============================
@@ -171,56 +226,51 @@ main {
    ============================== */
 .hero-banner {
   position: relative;
-  min-height: 80vh;
+  min-height: 90vh;
   display: flex;
   align-items: center;
-  justify-content: center;
-  text-align: center;
-  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0d0d0d 100%);
+  justify-content: flex-start;
+  text-align: left;
+  background: #0a0a0a;
   overflow: hidden;
-}
-
-.hero-banner::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(ellipse at 60% 50%, rgba(40,40,40,0.3) 0%, transparent 70%);
-  pointer-events: none;
 }
 
 .hero-content {
   position: relative;
   z-index: 1;
-  max-width: 700px;
-  padding: var(--spacing-xl) var(--spacing-md);
+  max-width: 650px;
+  padding: var(--spacing-xl) 5%;
+  padding-top: calc(var(--nav-height) + var(--spacing-xl));
 }
 
 .hero-subtitle {
-  font-size: 12px;
+  font-size: 18px;
   font-weight: 400;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: #888888;
-  margin-bottom: var(--spacing-sm);
+  color: #ffffff;
+  margin-bottom: 12px;
+  font-style: italic;
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+.hero-subtitle em {
+  font-style: italic;
 }
 
 .hero-content h1 {
-  font-size: 42px;
+  font-size: 36px;
   font-weight: 700;
-  letter-spacing: 1.5px;
+  letter-spacing: 1px;
   text-transform: uppercase;
   margin-bottom: var(--spacing-md);
   color: #ffffff;
-  line-height: 1.15;
+  line-height: 1.2;
 }
 
 .hero-content p {
   font-size: 15px;
-  color: #aaaaaa;
+  color: #cccccc;
   margin-bottom: var(--spacing-md);
   max-width: 500px;
-  margin-left: auto;
-  margin-right: auto;
   line-height: 1.7;
 }
 
@@ -236,14 +286,13 @@ main {
   height: 100%;
   object-fit: cover;
   display: block;
-  opacity: 0.15;
+  opacity: 0.85;
 }
 
 .hero-carousel-dots {
   position: absolute;
   bottom: 32px;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 5%;
   display: flex;
   gap: 8px;
   z-index: 2;
@@ -275,6 +324,7 @@ main {
   justify-content: center;
   cursor: pointer;
   transition: border-color 0.2s ease;
+  z-index: 2;
 }
 
 .hero-carousel-arrow:hover {
@@ -297,7 +347,7 @@ main {
   font-weight: 600;
   letter-spacing: 0.8px;
   border: none;
-  border-radius: var(--border-radius);
+  border-radius: 50px;
   cursor: pointer;
   transition: all 0.2s ease;
   text-align: center;
@@ -380,7 +430,7 @@ main {
 }
 
 /* ==============================
-   MODEL CIRCLES ROW (homepage)
+   MODEL CIRCLES ROW (homepage - legacy)
    ============================== */
 .model-circles {
   display: flex;
@@ -449,19 +499,90 @@ main {
 }
 
 /* ==============================
+   ACTION ICONS ROW (homepage)
+   ============================== */
+.action-icons {
+  display: flex;
+  justify-content: center;
+  gap: 48px;
+  padding: 56px var(--spacing-md);
+  max-width: var(--max-width);
+  margin: 0 auto;
+  flex-wrap: wrap;
+  background: #ffffff;
+}
+
+.action-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  text-decoration: none;
+  color: var(--color-text);
+  transition: opacity 0.2s ease;
+  max-width: 140px;
+}
+
+.action-icon:hover {
+  opacity: 0.75;
+}
+
+.action-icon-circle {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: #1a1a1a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+}
+
+.action-icon:hover .action-icon-circle {
+  transform: scale(1.05);
+}
+
+.action-icon-circle svg {
+  width: 36px;
+  height: 36px;
+}
+
+.action-icon-label {
+  font-size: 12px;
+  font-weight: 500;
+  text-align: center;
+  line-height: 1.4;
+  letter-spacing: 0.2px;
+  color: var(--color-text);
+}
+
+/* ==============================
    FEATURED MODEL SECTION
    ============================== */
 .featured-model {
-  padding: 80px var(--spacing-md) 60px;
-  max-width: var(--max-width);
-  margin: 0 auto;
-  text-align: center;
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  align-items: center;
+  min-height: 480px;
+  background: linear-gradient(135deg, #f0f5fa 0%, #e8f0f8 40%, #dce8f2 100%);
+  overflow: hidden;
+}
+
+.featured-model-text {
+  padding: 60px 5%;
+  text-align: left;
 }
 
 .featured-model .label {
-  font-size: 14px;
+  font-size: 18px;
   color: var(--color-text-muted);
   margin-bottom: 8px;
+  font-style: italic;
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+.featured-model .label em {
+  font-style: italic;
 }
 
 .featured-model h2 {
@@ -475,16 +596,13 @@ main {
 .featured-model .featured-buttons {
   display: flex;
   gap: 12px;
-  justify-content: center;
-  margin-bottom: 48px;
+  justify-content: flex-start;
 }
 
 .featured-model-image {
   width: 100%;
-  max-width: 900px;
-  margin: 0 auto;
-  height: 360px;
-  background-color: #f0f0f0;
+  height: 100%;
+  min-height: 400px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -760,6 +878,7 @@ main {
   letter-spacing: 0.5px;
   background-color: rgba(0,0,0,0.3);
   border: 1.5px solid #ffffff;
+  border-radius: 50px;
   padding: 12px 28px;
   transition: background-color 0.2s ease;
 }
@@ -1450,7 +1569,7 @@ main {
 .cta-buttons {
   display: flex;
   gap: var(--spacing-sm);
-  justify-content: center;
+  justify-content: flex-start;
   flex-wrap: wrap;
 }
 
@@ -2263,6 +2382,10 @@ main {
     display: flex;
   }
 
+  .nav-links.active a {
+    color: var(--color-text);
+  }
+
   .nav-toggle {
     display: flex;
   }
@@ -2272,7 +2395,11 @@ main {
   }
 
   .hero-content h1 {
-    font-size: 26px;
+    font-size: 22px;
+  }
+
+  .hero-subtitle {
+    font-size: 14px;
   }
 
   .hero-carousel-arrow {
@@ -2287,6 +2414,21 @@ main {
     grid-template-columns: 1fr;
   }
 
+  .action-icons {
+    gap: 24px;
+    padding: 32px var(--spacing-md);
+  }
+
+  .action-icon-circle {
+    width: 64px;
+    height: 64px;
+  }
+
+  .action-icon-circle svg {
+    width: 28px;
+    height: 28px;
+  }
+
   .model-circles {
     gap: 20px;
   }
@@ -2299,6 +2441,23 @@ main {
   .model-circle-icon svg {
     width: 30px;
     height: 16px;
+  }
+
+  .featured-model {
+    grid-template-columns: 1fr;
+  }
+
+  .featured-model-text {
+    padding: 40px var(--spacing-md);
+    text-align: center;
+  }
+
+  .featured-model .featured-buttons {
+    justify-content: center;
+  }
+
+  .featured-model-image {
+    min-height: 280px;
   }
 
   .form-row {
