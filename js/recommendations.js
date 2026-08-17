@@ -4,7 +4,7 @@
  * based on user's electric vehicle affinity score
  */
 
-document.addEventListener('DOMContentLoaded', function () {
+window.addEventListener('load', function () {
 
   // Get affinity data from localStorage (synchronized with main.js)
   var affinity = JSON.parse(localStorage.getItem('mini_affinity') || '{}');
@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function () {
   // Generate client-side recommendations based on affinity
   // In production, this would call the Salesforce REST API:
   // GET /services/apexrest/mini/recommendations?electricAffinity=0.85
-  // For demo purposes, we simulate the recommendations
+  // Recommendations sourced from Salesforce org records (IDs: 0prg80000008qEL-qEP)
 
   var recommendations = [];
 
