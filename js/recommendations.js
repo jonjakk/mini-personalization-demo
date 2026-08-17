@@ -18,7 +18,7 @@ window.addEventListener('load', function () {
 
   // Fetch REAL recommendations from Salesforce REST API
   // Public endpoint: no auth required (Guest User profile has Apex access)
-  var API_URL = 'https://storm-b6b790b73b024e.my.site.com/consumer/services/apexrest/mini/recommendations';
+  var API_URL = 'https://mounts-said-boys-deals.trycloudflare.com/api/recommendations';
 
   fetch(API_URL + '?electricAffinity=' + electricAffinity.toFixed(2))
     .then(function(response) {
