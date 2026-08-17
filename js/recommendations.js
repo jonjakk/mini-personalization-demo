@@ -16,14 +16,35 @@ window.addEventListener('load', function () {
     return; // Not enough data for personalization
   }
 
-  // Generate client-side recommendations based on affinity
-  // In production, this would call the Salesforce REST API:
-  // GET /services/apexrest/mini/recommendations?electricAffinity=0.85
-  // Recommendations sourced from Salesforce org records (IDs: 0prg80000008qEL-qEP)
+  // Fetch REAL recommendations from Salesforce REST API
+  // Public endpoint: no auth required (Guest User profile has Apex access)
+  var API_URL = 'https://storm-b6b790b73b024e.my.site.com/consumer/services/apexrest/mini/recommendations';
 
+  fetch(API_URL + '?electricAffinity=' + electricAffinity.toFixed(2))
+    .then(function(response) {
+      if (!response.ok) throw new Error('API returned ' + response.status);
+      return response.json();
+    })
+    .then(function(recommendations) {
+      // Take top 3 recommendations from the real Salesforce response
+      recommendations = recommendations.slice(0, 3);
+      renderRecommendationPanel(recommendations);
+      trackRecommendationImpression(recommendations);
+    })
+    .catch(function(error) {
+      // Fallback: use cached recommendations if API fails (offline/CORS issue)
+      console.warn('Salesforce API unavailable, using fallback:', error.message);
+      var fallbackRecs = getFallbackRecommendations(electricAffinity);
+      renderRecommendationPanel(fallbackRecs);
+      trackRecommendationImpression(fallbackRecs);
+    });
+});
+
+/**
+ * Fallback recommendations (used only if the Salesforce API is unreachable)
+ */
+function getFallbackRecommendations(electricAffinity) {
   var recommendations = [];
-
-  // High electric affinity (60%+) — prioritize electric models and incentives
   if (electricAffinity >= 0.6) {
     recommendations.push({
       name: 'MINI Cooper SE Test Drive',
@@ -83,14 +104,8 @@ window.addEventListener('load', function () {
 
   // Sort by score and take top 3
   recommendations.sort(function(a, b) { return b.score - a.score; });
-  recommendations = recommendations.slice(0, 3);
-
-  // Render recommendation panel
-  renderRecommendationPanel(recommendations);
-
-  // Track recommendation impressions in localStorage
-  trackRecommendationImpression(recommendations);
-});
+  return recommendations.slice(0, 3);
+}
 
 /**
  * Renders the floating recommendation panel
