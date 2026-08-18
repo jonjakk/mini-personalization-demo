@@ -92,36 +92,8 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     }
 
-    // Personalize model grid — move electric models to front if high affinity
-    if (electricScore >= 60) {
-      var grid = document.querySelector('.model-selection-grid');
-      if (grid) {
-        var cards = Array.from(grid.children);
-        cards.sort(function(a, b) {
-          var aElec = a.querySelector('.badge-electric') ? 0 : 1;
-          var bElec = b.querySelector('.badge-electric') ? 0 : 1;
-          return aElec - bElec;
-        });
-        cards.forEach(function(card) { grid.appendChild(card); });
-      }
-    }
   }
 
-  // --- Personalize Model Selection Page ---
-  if (path.includes('modelle/index') || path.endsWith('modelle/')) {
-    if (electricScore >= 60) {
-      var grid = document.querySelector('.model-selection-grid');
-      if (grid) {
-        var cards = Array.from(grid.children);
-        cards.sort(function(a, b) {
-          var aElec = a.querySelector('.badge-electric') ? 0 : 1;
-          var bElec = b.querySelector('.badge-electric') ? 0 : 1;
-          return aElec - bElec;
-        });
-        cards.forEach(function(card) { grid.appendChild(card); });
-      }
-    }
-  }
 
   // --- Affinity Display (Profile Lookup simulation) ---
   // Show a floating panel with live affinity scores (visible during demo)
