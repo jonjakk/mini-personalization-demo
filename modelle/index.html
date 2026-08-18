@@ -9,7 +9,7 @@
 </head>
 <body>
 
-  <nav class="nav">
+  <nav class="nav nav-scrolled">
     <div class="nav-container">
       <a href="../index.html" class="nav-logo">
         <img src="../images/mini-wing-logo.jpg" alt="MINI" class="nav-logo-img">
@@ -460,5 +460,25 @@
 
   <script src="../js/sitemap-config.js"></script>
   <script src="../js/main.js"></script>
+  <script>
+  (function() {
+    var btn = document.querySelector('.listing-load-more');
+    if (!btn) return;
+    btn.addEventListener('click', function() {
+      var grid = document.querySelector('.model-selection-grid');
+      if (!grid) return;
+      var cards = grid.querySelectorAll('.model-card');
+      cards.forEach(function(card) {
+        var clone = card.cloneNode(true);
+        grid.appendChild(clone);
+      });
+      var counter = document.querySelector('.listing-pagination p');
+      if (counter) {
+        var total = grid.querySelectorAll('.model-card').length;
+        counter.textContent = total + ' von 4.044';
+      }
+    });
+  })();
+  </script>
 </body>
 </html>

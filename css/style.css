@@ -100,14 +100,14 @@ img {
 }
 
 .nav-logo-img {
-  height: 40px;
+  height: 36px;
   width: auto;
   object-fit: contain;
-  filter: brightness(0) invert(1); /* Makes it white for dark nav */
+  filter: invert(1); /* White logo on dark hero */
 }
 
 .nav-scrolled .nav-logo-img {
-  filter: brightness(0); /* Makes it black for light nav */
+  filter: none; /* Black logo on white nav */
 }
 
 .nav-links {
@@ -1046,7 +1046,7 @@ main {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 16px var(--spacing-md);
+  padding: calc(var(--nav-height) + 16px) var(--spacing-md) 16px;
   max-width: var(--max-width);
   margin: 0 auto;
   font-size: 13px;
@@ -1593,7 +1593,7 @@ main {
   gap: var(--spacing-lg);
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: var(--spacing-lg) var(--spacing-md);
+  padding: calc(var(--nav-height) + var(--spacing-lg)) var(--spacing-md) var(--spacing-lg);
 }
 
 .model-listing-header {
@@ -1922,9 +1922,8 @@ main {
 }
 
 .footer-logo-img {
-  height: 50px;
+  height: 40px;
   width: auto;
-  filter: brightness(0); /* Black on light footer */
 }
 
 .footer-copyright p {
