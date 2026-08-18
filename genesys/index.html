@@ -1160,11 +1160,13 @@
                     <div class="acw-header">
                         <div class="acw-title">
                             After Call Work - Wrap Up
-                            <span class="acw-badge">ACW</span>
+                            <span class="acw-badge">Lightning Flow</span>
                         </div>
                         <div class="acw-timer" id="acwTimer">ACW: 00:00</div>
                     </div>
                     <div class="acw-content">
+                        <!-- Lightning Out Flow iframe (loaded when orgDomain is available) -->
+                        <iframe id="lightningOutFrame" style="width:100%;height:500px;border:none;border-radius:8px;display:none;"></iframe>
                         <div class="acw-form" id="acwForm">
                             <!-- Call Outcome -->
                             <div class="form-section">
@@ -1394,6 +1396,29 @@
                 acwSeconds++;
                 document.getElementById('acwTimer').textContent = 'ACW: ' + formatTime(acwSeconds);
             }, 1000);
+
+            // Load Lightning Out Flow iframe if orgDomain is set
+            if (orgDomain && orgDomain.includes('salesforce.com')) {
+                const iframe = document.getElementById('lightningOutFrame');
+                const vfUrl = orgDomain + '/apex/MINIAfterCallWorkVF?opportunityId=' + encodeURIComponent(opportunityId) + '&contactName=' + encodeURIComponent(contactName);
+                iframe.src = vfUrl;
+                iframe.style.display = 'block';
+                document.getElementById('acwForm').style.display = 'none';
+                document.getElementById('acwFooter').style.display = 'none';
+                // Listen for flow completion message
+                window.addEventListener('message', function(e) {
+                    if (e.data && e.data.type === 'MINI_ACW_COMPLETE') {
+                        clearInterval(acwTimerInterval);
+                        document.getElementById('acwView').classList.remove('active');
+                        document.getElementById('completeView').classList.add('active');
+                        if (e.data.opportunityId) {
+                            setTimeout(() => {
+                                window.location.href = orgDomain + '/lightning/r/Opportunity/' + e.data.opportunityId + '/view';
+                            }, 2000);
+                        }
+                    }
+                });
+            }
         }
 
         // Star rating
