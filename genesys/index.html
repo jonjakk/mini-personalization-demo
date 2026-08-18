@@ -1469,10 +1469,17 @@
 
             clearInterval(acwTimerInterval);
 
-            // After 2 seconds show complete
+            // After 2 seconds redirect back to Opportunity in Salesforce
             setTimeout(() => {
                 document.getElementById('acwView').classList.remove('active');
                 document.getElementById('completeView').classList.add('active');
+                // Redirect to Opportunity page after another 2 seconds
+                if (opportunityId) {
+                    setTimeout(() => {
+                        const sfUrl = 'https://storm-b6b790b73b024e.lightning.force.com/lightning/r/Opportunity/' + opportunityId + '/view';
+                        window.location.href = sfUrl;
+                    }, 2000);
+                }
             }, 2000);
         }
 
