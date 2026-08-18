@@ -1052,7 +1052,7 @@
                                 <div class="call-customer-name" id="callCustomerName">Lisa Schmidt</div>
                                 <div class="call-phone-number" id="callPhoneNumber">+49 89 1234 5678</div>
                                 <div class="call-timer" id="callTimer">00:00</div>
-                                <div class="call-queue-info">Inbound Voice &bull; MINI BDC Queue</div>
+                                <div class="call-queue-info">Outbound Voice &bull; MINI BDC Queue</div>
                             </div>
                             <div class="call-controls">
                                 <button class="ctrl-btn" id="btnMute" onclick="toggleControl('mute')">
@@ -1087,7 +1087,7 @@
                             <div class="customer-header">
                                 <div class="customer-header-title">Customer Information</div>
                                 <div class="customer-name-large" id="panelCustomerName">Lisa Schmidt</div>
-                                <div class="customer-subtitle">MINI Enthusiast &bull; Existing Lead</div>
+                                <div class="customer-subtitle" id="panelSubtitle">BDC Lead</div>
                             </div>
                             <div class="customer-details">
                                 <div class="detail-section">
@@ -1109,7 +1109,7 @@
                                     <div class="detail-section-title">Account</div>
                                     <div class="detail-row">
                                         <span class="detail-label">Account</span>
-                                        <span class="detail-value link">MINI Munich Central</span>
+                                        <span class="detail-value link" id="panelAccount">MINI Munich Central</span>
                                     </div>
                                     <div class="detail-row">
                                         <span class="detail-label">Segment</span>
@@ -1139,7 +1139,7 @@
                             <div class="timeline-item">
                                 <span class="timeline-dot green"></span>
                                 <span class="timeline-time" id="timelineConnect">--:--</span>
-                                <span class="timeline-text">Call connected - Inbound Voice</span>
+                                <span class="timeline-text">Call connected - Outbound Voice</span>
                             </div>
                             <div class="timeline-item">
                                 <span class="timeline-dot blue"></span>
@@ -1293,7 +1293,7 @@
     <div class="incoming-overlay" id="incomingOverlay" style="display:none;">
         <div class="incoming-card">
             <div class="incoming-avatar" id="incomingAvatar">LS</div>
-            <div class="incoming-label">Incoming Call</div>
+            <div class="incoming-label">Outbound Call</div>
             <div class="incoming-name" id="incomingName">Lisa Schmidt</div>
             <div class="incoming-phone" id="incomingPhone">+49 89 1234 5678</div>
             <div class="incoming-actions">
@@ -1311,9 +1311,12 @@
         // URL Parameters
         const params = new URLSearchParams(window.location.search);
         const opportunityId = params.get('opportunityId') || 'demo-opp-001';
-        const contactName = params.get('contactName') || 'Lisa Schmidt';
-        const phone = params.get('phone') || '+49 89 1234 5678';
+        const contactName = params.get('contactName') || 'Unknown Contact';
+        const phone = params.get('phone') || '';
         const orgDomain = params.get('orgDomain') || '';
+        const contactEmail = params.get('email') || '';
+        const accountName = params.get('accountName') || '';
+        const opportunityName = params.get('opportunityName') || '';
 
         // State
         let callSeconds = 0;
@@ -1322,7 +1325,7 @@
         let acwTimerInterval = null;
         let starRatingValue = 0;
 
-        // Initialize with URL params
+        // Initialize with URL params — ALL fields are dynamic from the Opportunity
         function initializeParams() {
             const initials = contactName.split(' ').map(n => n[0]).join('').toUpperCase();
 
@@ -1336,6 +1339,11 @@
 
             document.getElementById('panelCustomerName').textContent = contactName;
             document.getElementById('panelPhone').textContent = phone;
+
+            // Dynamic fields from Salesforce Opportunity/Contact
+            if (contactEmail) document.getElementById('panelEmail').textContent = contactEmail;
+            if (accountName) document.getElementById('panelAccount').textContent = accountName;
+            if (opportunityName) document.getElementById('panelOpportunity').textContent = opportunityName;
         }
 
         // Format time

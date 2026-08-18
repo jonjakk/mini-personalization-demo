@@ -2,6 +2,10 @@
  * Fahrzeug speichern - Creates a Lead in Salesforce via Web-to-Lead
  * When user clicks "Fahrzeug speichern", a modal captures their info
  * and submits to Salesforce, creating a Lead that becomes an Opportunity.
+ *
+ * The Lead description includes full behavioral data from localStorage (mini_affinity)
+ * which is parsed by MiniLeadScoreController after auto-conversion by the
+ * MINI_Auto_Convert_Web_Lead flow (triggers on LeadSource='Web' + 'Fahrzeug gespeichert').
  */
 
 function saveVehicle(event) {
@@ -83,9 +87,108 @@ function handleSaveSubmit() {
   closeSaveModal();
 }
 
+/**
+ * Build the Lead description with full behavioral data from localStorage.
+ * Format is parsed by MiniLeadScoreController on the Opportunity after conversion.
+ */
+function buildLeadDescription(modelName, modelPrice) {
+  var affinity = JSON.parse(localStorage.getItem('mini_affinity') || '{}');
+
+  var electricViews = affinity.electric || 0;
+  var combustionViews = affinity.combustion || 0;
+  var totalPageViews = affinity.pageViews || 0;
+  var sessions = affinity.visits || 1;
+  var testDriveViewed = affinity.testDriveSignup ? 'Yes' : 'No';
+
+  // Calculate electric affinity percentage
+  var totalModelViews = electricViews + combustionViews;
+  var electricAffinity = totalModelViews > 0 ? Math.round((electricViews / totalModelViews) * 100) : 0;
+
+  // Determine last electric model viewed from current page or stored data
+  var lastElectricView = getLastElectricModelSlug();
+
+  // Build description in the exact format MiniLeadScoreController expects
+  var description = 'Fahrzeug gespeichert: ' + modelName + ' (' + modelPrice + ' EUR)\n' +
+    'Interest Level: ' + calculateInterestLevel(electricViews, sessions, totalPageViews) + '\n' +
+    'Vehicle Interest: ' + modelName + '\n' +
+    'Objections: None\n' +
+    'Competitor: N/A\n' +
+    'Next Steps: N/A\n' +
+    'Notes: Behavioral Data - ' +
+      'Electric Affinity: ' + electricAffinity + '%, ' +
+      'Page Views: ' + totalPageViews + ', ' +
+      'Sessions: ' + sessions + ', ' +
+      'Last Electric View: ' + lastElectricView + '\n' +
+    '---\n' +
+    'Raw Behavioral Data:\n' +
+    '  Electric Page Views: ' + electricViews + '\n' +
+    '  Combustion Page Views: ' + combustionViews + '\n' +
+    '  Total Page Views: ' + totalPageViews + '\n' +
+    '  Electric Affinity: ' + electricAffinity + '%\n' +
+    '  Sessions/Visits: ' + sessions + '\n' +
+    '  Test Drive Viewed: ' + testDriveViewed + '\n' +
+    '  Model Saved: ' + modelName;
+
+  return description;
+}
+
+/**
+ * Calculate interest level (1-5) based on engagement signals.
+ * Higher electric views, more sessions, more page views = higher interest.
+ */
+function calculateInterestLevel(electricViews, sessions, totalPageViews) {
+  var score = 0;
+  if (electricViews >= 5) score += 2;
+  else if (electricViews >= 2) score += 1;
+  if (sessions >= 3) score += 1;
+  if (totalPageViews >= 10) score += 1;
+  // Saving a vehicle is itself a strong signal
+  score += 1;
+  return Math.min(score, 5);
+}
+
+/**
+ * Get the last electric model slug from the current page path or localStorage.
+ * Returns a slug like 'cooper-se', 'aceman', or 'countryman-se'.
+ */
+function getLastElectricModelSlug() {
+  var path = window.location.pathname;
+  var electricModels = ['cooper-se', 'aceman', 'countryman-se'];
+
+  // Check if current page is an electric model
+  for (var i = 0; i < electricModels.length; i++) {
+    if (path.includes(electricModels[i])) {
+      return electricModels[i];
+    }
+  }
+
+  // Fallback: check data-model-name attribute
+  var main = document.querySelector('main');
+  var modelName = main ? main.getAttribute('data-model-name') : '';
+  if (modelName) {
+    var slug = modelName.toLowerCase().replace(/\s+/g, '-').replace('mini-', '');
+    for (var j = 0; j < electricModels.length; j++) {
+      if (slug.includes(electricModels[j])) {
+        return electricModels[j];
+      }
+    }
+  }
+
+  // Fallback: if they have electric views, assume cooper-se (most popular)
+  var affinity = JSON.parse(localStorage.getItem('mini_affinity') || '{}');
+  if (affinity.electric > 0) {
+    return 'cooper-se';
+  }
+
+  return 'none';
+}
+
 function submitWebToLead(userData, modelName, modelPrice) {
   // Salesforce Web-to-Lead OID for storm org
   var oid = '00Dg8000004YllN';
+
+  // Build the full description with behavioral data
+  var description = buildLeadDescription(modelName, modelPrice);
 
   // Create hidden iframe for form submission
   var iframe = document.createElement('iframe');
@@ -107,8 +210,8 @@ function submitWebToLead(userData, modelName, modelPrice) {
     'phone': userData.phone || '',
     'company': 'Private',
     'lead_source': 'Web',
-    'description': 'Fahrzeug gespeichert: ' + modelName + ' (' + modelPrice + ' EUR)\nElectric Affinity: ' + getElectricAffinity() + '%\nPage Views: ' + getPageViews(),
-    '00Ng8000005mVVB': modelName // Custom field: Vehicle_Interest__c (if exists)
+    'description': description,
+    '00Ng8000005mVVB': modelName // Custom field: Vehicle_Interest__c
   };
 
   for (var key in fields) {
@@ -122,8 +225,9 @@ function submitWebToLead(userData, modelName, modelPrice) {
   document.body.appendChild(form);
   form.submit();
 
-  // Fire Salesforce Interactions identity event
+  // Fire Salesforce Interactions identity event with behavioral data
   if (window.SalesforceInteractions) {
+    var affinity = JSON.parse(localStorage.getItem('mini_affinity') || '{}');
     SalesforceInteractions.sendEvent({
       interaction: { name: 'VehicleSaved', eventType: 'identity' },
       user: {
@@ -131,7 +235,11 @@ function submitWebToLead(userData, modelName, modelPrice) {
         attributes: {
           emailAddress: userData.email,
           firstName: userData.firstName,
-          lastName: userData.lastName
+          lastName: userData.lastName,
+          vehicleInterest: modelName,
+          electricAffinity: getElectricAffinity(),
+          pageViews: affinity.pageViews || 0,
+          sessions: affinity.visits || 1
         }
       }
     });
