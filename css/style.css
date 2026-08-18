@@ -780,6 +780,12 @@ main {
   line-height: 1.4;
 }
 
+.model-card-content .price-leasing-note .details-link {
+  color: var(--color-text-muted);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
 .model-card-content .drivetrain {
   font-size: 12px;
   color: var(--color-text-muted);
