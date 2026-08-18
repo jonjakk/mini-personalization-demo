@@ -85,7 +85,7 @@ function handleSaveSubmit() {
 
 function submitWebToLead(userData, modelName, modelPrice) {
   // Salesforce Web-to-Lead OID for storm org
-  var oid = '00Dg8000008kH8p';
+  var oid = '00Dg8000004YllN';
 
   // Create hidden iframe for form submission
   var iframe = document.createElement('iframe');
