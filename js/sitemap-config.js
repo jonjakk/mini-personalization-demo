@@ -5,7 +5,7 @@
  * This file configures page types, content zones, and catalog object tracking
  * for the Salesforce Personalization (Interactions SDK) beacon.
  */
-SalesforceInteractions.init({
+if (typeof SalesforceInteractions !== 'undefined') { SalesforceInteractions.init({
   cookieDomain: 'jonjakk.github.io',
   consents: [{ provider: 'mini-demo', purpose: 'Tracking', status: SalesforceInteractions.ConsentStatus.OptIn }]
 }).then(() => {
@@ -60,4 +60,4 @@ SalesforceInteractions.init({
     ]
   };
   SalesforceInteractions.initSitemap(config);
-});
+}).catch(function() {}); }
