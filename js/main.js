@@ -57,23 +57,17 @@ document.addEventListener('DOMContentLoaded', function () {
     // If user has viewed 3+ electric model pages, personalize the homepage
     if (affinity.electric >= 3 && heroContent) {
       heroContent.querySelector('h1').textContent = '100% Electric.';
-      heroContent.querySelector('p').textContent = 'Sie interessieren sich fuer elektrische Mobilitaet? Entdecken Sie den MINI Cooper SE — 100% elektrisch, 100% Fahrspass.';
-      // Swap hero SVG to electric-focused with green accents
+      heroContent.querySelector('p').textContent = 'Jetzt von der staatlichen E-Auto Förderung profitieren. Bis zu 4.500€ Umweltbonus auf alle vollelektrischen MINI Modelle.';
+      // Swap hero background to electric Countryman image
+      if (heroBanner) {
+        heroBanner.style.backgroundImage = 'url(images/hero-electric-countryman.webp)';
+        heroBanner.style.backgroundSize = 'cover';
+        heroBanner.style.backgroundPosition = 'center';
+      }
+      // Hide the SVG hero-image if present
       var heroImage = heroContent.querySelector('.hero-image');
       if (heroImage) {
-        heroImage.innerHTML = '<svg viewBox="0 0 700 350" xmlns="http://www.w3.org/2000/svg">' +
-          '<defs><linearGradient id="elecGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#001a00"/><stop offset="100%" style="stop-color:#003300"/></linearGradient></defs>' +
-          '<rect width="700" height="350" fill="url(#elecGrad)"/>' +
-          '<rect x="150" y="180" width="400" height="100" rx="50" fill="#2a2a2a"/>' +
-          '<circle cx="250" cy="280" r="35" fill="#444"/><circle cx="250" cy="280" r="20" fill="#111"/>' +
-          '<circle cx="450" cy="280" r="35" fill="#444"/><circle cx="450" cy="280" r="20" fill="#111"/>' +
-          '<rect x="200" y="150" width="300" height="60" rx="20" fill="#333"/>' +
-          '<rect x="220" y="160" width="100" height="35" rx="5" fill="#00ff88" opacity="0.7"/>' +
-          '<rect x="380" y="160" width="100" height="35" rx="5" fill="#00ff88" opacity="0.7"/>' +
-          '<circle cx="350" cy="120" r="10" fill="#00ff88"/>' +
-          '<text x="350" y="330" text-anchor="middle" fill="#00ff88" font-family="Helvetica Neue, Arial" font-size="16" font-weight="bold">MINI COOPER SE — JETZT PROBEFAHRT BUCHEN</text>' +
-          '<text x="350" y="30" text-anchor="middle" fill="#b6ff00" font-family="Helvetica Neue, Arial" font-size="12">PERSONALISIERT FUER SIE</text>' +
-          '</svg>';
+        heroImage.style.display = 'none';
       }
       // Update CTA buttons
       var ctaButtons = heroContent.querySelector('.cta-buttons');
