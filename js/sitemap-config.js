@@ -27,21 +27,19 @@
     }]
   }).then(function() {
 
-    // Log the anonymous ID for RTDG Visualizer integration
+    // Log session ID to console (same pattern as abc-demo.cloud)
+    function logSessionId(id) {
+      console.log('%c Data Cloud Session ID: ' + id + ' ', 'background: #032d60; color: #fff; padding: 4px 8px; border-radius: 4px; font-size: 13px;');
+      console.log('Paste this ID into the RTDG Visualizer → IndividualIdentityLink__dlm.SourceRecordId__c=' + id);
+    }
+
     document.addEventListener(SalesforceInteractions.CustomEvents.OnSetAnonymousId, function(event) {
-      console.log('%c[Data Cloud] Anonymous ID: ' + event.detail.newAnonymousId,
-        'color: #0176d3; font-weight: bold; font-size: 12px;');
-      console.log('%c[Data Cloud] Use this ID in the RTDG Visualizer to view the unified profile',
-        'color: #6b7280; font-style: italic;');
+      logSessionId(event.detail.newAnonymousId);
     });
 
-    // Also log immediately if already set
     var anonId = SalesforceInteractions.getAnonymousId ? SalesforceInteractions.getAnonymousId() : null;
     if (anonId) {
-      console.log('%c[Data Cloud] Session Anonymous ID: ' + anonId,
-        'color: #0176d3; font-weight: bold; font-size: 12px;');
-      console.log('%c[Data Cloud] Paste this ID into the RTDG Visualizer (IndividualIdentityLink__dlm.SourceRecordId__c)',
-        'color: #6b7280; font-style: italic;');
+      logSessionId(anonId);
     }
 
     var defined = SalesforceInteractions.CatalogObjectInteractionName;
@@ -120,8 +118,7 @@
 
     SalesforceInteractions.initSitemap(sitemapConfig);
 
-    console.log('%c[Data Cloud] Personalization SDK initialized successfully',
-      'color: #2e844a; font-weight: bold;');
+    console.log('%c Salesforce Data Cloud Web SDK initialized ✓ ', 'background: #2e844a; color: #fff; padding: 3px 8px; border-radius: 4px;');
 
   }).catch(function(err) {
     console.error('[Data Cloud] SDK initialization failed:', err);
