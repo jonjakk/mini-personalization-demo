@@ -64,8 +64,8 @@ document.addEventListener('DOMContentLoaded', function () {
         heroBanner.style.backgroundSize = 'cover';
         heroBanner.style.backgroundPosition = 'center';
       }
-      // Hide the SVG hero-image if present
-      var heroImage = heroContent.querySelector('.hero-image');
+      // Hide the original hero-image overlay (it's a sibling of hero-content)
+      var heroImage = heroBanner.querySelector('.hero-image');
       if (heroImage) {
         heroImage.style.display = 'none';
       }
