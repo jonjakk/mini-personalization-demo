@@ -28,18 +28,20 @@
   }).then(function() {
 
     // Log session ID to console (same pattern as abc-demo.cloud)
-    function logSessionId(id) {
-      console.log('%c Data Cloud Session ID: ' + id + ' ', 'background: #032d60; color: #fff; padding: 4px 8px; border-radius: 4px; font-size: 13px;');
-      console.log('Paste this ID into the RTDG Visualizer → IndividualIdentityLink__dlm.SourceRecordId__c=' + id);
+    var anonId = SalesforceInteractions.getAnonymousId ? SalesforceInteractions.getAnonymousId() : null;
+    if (anonId) {
+      console.log('%c Data Cloud Session ID: ' + anonId + ' ', 'background: #032d60; color: #fff; padding: 4px 8px; border-radius: 4px; font-size: 13px;');
     }
 
     document.addEventListener(SalesforceInteractions.CustomEvents.OnSetAnonymousId, function(event) {
-      logSessionId(event.detail.newAnonymousId);
+      console.log('%c Data Cloud Session ID: ' + event.detail.newAnonymousId + ' ', 'background: #032d60; color: #fff; padding: 4px 8px; border-radius: 4px; font-size: 13px;');
     });
 
-    var anonId = SalesforceInteractions.getAnonymousId ? SalesforceInteractions.getAnonymousId() : null;
-    if (anonId) {
-      logSessionId(anonId);
+    // Check if user already signed up (known identity) - show Contact lookup info
+    var savedUser = JSON.parse(localStorage.getItem('mini_user') || 'null');
+    if (savedUser && savedUser.email) {
+      console.log('%c Known Identity: ' + savedUser.firstName + ' ' + savedUser.lastName + ' (' + savedUser.email + ') ', 'background: #2e844a; color: #fff; padding: 4px 8px; border-radius: 4px; font-size: 13px;');
+      console.log('RTDG Visualizer: Use Contact ID from Salesforce (Opportunity → Contact) for Profile Lookup');
     }
 
     var defined = SalesforceInteractions.CatalogObjectInteractionName;

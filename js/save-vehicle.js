@@ -243,6 +243,8 @@ function submitWebToLead(userData, modelName, modelPrice) {
         }
       }
     });
+    console.log('%c Identity linked: ' + userData.email + ' ', 'background: #2e844a; color: #fff; padding: 4px 8px; border-radius: 4px; font-size: 13px;');
+    console.log('%c Open RTDG Visualizer in Salesforce → Profile Lookup with Contact ID from the Opportunity ', 'background: #032d60; color: #fff; padding: 3px 8px; border-radius: 4px;');
   }
 
   // Show success toast
