@@ -155,26 +155,19 @@ function getLastElectricModelSlug() {
   var path = window.location.pathname;
   var electricModels = ['cooper-se', 'aceman', 'countryman-se'];
 
-  // Check if current page is an electric model
   for (var i = 0; i < electricModels.length; i++) {
     if (path.includes(electricModels[i])) {
       return electricModels[i];
     }
   }
 
-  // Fallback: check data-model-name attribute
   var main = document.querySelector('main');
-  var modelName = main ? main.getAttribute('data-model-name') : '';
-  if (modelName) {
-    var slug = modelName.toLowerCase().replace(/\s+/g, '-').replace('mini-', '');
-    for (var j = 0; j < electricModels.length; j++) {
-      if (slug.includes(electricModels[j])) {
-        return electricModels[j];
-      }
-    }
+  var drivetrain = main ? main.getAttribute('data-model-drivetrain') : '';
+  if (drivetrain === 'Electric') {
+    var modelId = main.getAttribute('data-model-id') || '';
+    return modelId.replace('mini-', '');
   }
 
-  // Fallback: if they have electric views, assume cooper-se (most popular)
   var affinity = JSON.parse(localStorage.getItem('mini_affinity') || '{}');
   if (affinity.electric > 0) {
     return 'cooper-se';

@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function () {
     affinity.electric += 1;
     affinity.pageViews += 1;
     affinity.lastElectricView = Date.now();
-  } else if (path.includes('cooper.html') || path.includes('cooper-s.html') || path.includes('countryman.html')) {
+  } else if (path.includes('cooper-3door') || path.includes('cooper-5door') || path.includes('cabrio')) {
     affinity.combustion += 1;
     affinity.pageViews += 1;
   }
@@ -72,8 +72,8 @@ document.addEventListener('DOMContentLoaded', function () {
       // Update CTA buttons
       var ctaButtons = heroContent.querySelector('.cta-buttons');
       if (ctaButtons) {
-        ctaButtons.innerHTML = '<a href="modelle/cooper-se.html" class="btn btn-primary">MINI Cooper SE entdecken</a>' +
-          '<a href="test-drive.html" class="btn btn-outline">Probefahrt buchen</a>';
+        ctaButtons.innerHTML = '<a href="modelle/countryman-se.html" class="btn btn-primary">MINI Countryman SE entdecken</a>' +
+          '<a href="modelle/index.html" class="btn btn-outline">Alle Elektro-Modelle</a>';
       }
       // Add personalization indicator
       if (heroBanner && !document.querySelector('.personalization-badge')) {
